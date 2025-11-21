@@ -1,3 +1,4 @@
+let zoneTargeted = "";
 let data = JSON.parse(localStorage.getItem("myData")) || [];
 
 data.forEach(d=>{
@@ -20,7 +21,7 @@ document.getElementById("ajouteExperience").addEventListener("click", () => {
   </div>
   `
 });
-
+ 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -51,6 +52,7 @@ if(form.name.length){
       }
     );
     }
+
 renderCard(objet);
 data.push(objet)
 localStorage.setItem("myData", JSON.stringify(data));
@@ -100,9 +102,7 @@ function createCard(objet) {
 return cards
 }
 
-function showProfil(objet){    
-  console.log(objet);
-  
+function showProfil(objet){
   document.getElementById("profile").addEventListener("click", () =>{
   afficherProfil.innerHTML = `
   <img src=${objet.photo} id="profil-photo" class="img-thumbnail w-50 d-block mx-auto mb-3">
@@ -119,6 +119,30 @@ function showProfil(objet){
   `
 });
 }
+
+// let zones = document.querySelectorAll(".zones")
+// zones.forEach(zone => {
+//   // console.log(zone.getAttribute("id"));
+//   zone.addEventListener("click", (event) =>{
+//     // console.log(event.target.getAttribute("id"));
+//     zoneTargeted = event.target.getAttribute("id");
+
+    
+//   })
+  
+// })
+
+// data-unique = ${objet.email}
+
+// document.querySelectorAll.forEach(btn =>{
+//   let email = btn.getAttribute("data-unique")
+//   let obje
+// })
+
+
+
+
+
 
 // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 // const phoneRegex = /^(\+212|00212|0)[5-7]\d{8}$/
@@ -202,36 +226,4 @@ function showProfil(objet){
 //   }
 //   // console.log(checking);
 // });
-
-
-
-
-// const form = document.getElementById("addBtn")
-// form.addEventListener('submit', function(event) {
-//   event.preventDefault();
-
-//   const formDataObject = {
-//     nom: document.getElementById('nom').value,
-//     role: document.getElementById('role').value,
-//     email: document.getElementById('email').value,
-//     telephone: document.getElementById('phone').value,
-//     photo: document.getElementById('photo').value
-//   };
-
-//   localStorage.setItem('donneesFormulaire', JSON.stringify(formDataObject));
-
-//   console.log('Données sauvegardées dans localStorage.');
-// });
-
-// function chargerDonnees() {
-//   const donneesStockees = localStorage.getItem('donneesFormulaire');
-//   if (donneesStockees) {
-//     const donnees = JSON.parse(donneesStockees);
-//     document.getElementById('nom').value = donnees.nom;
-//     document.getElementById('role').value = donnees.role;
-//     document.getElementById('email').value = donnees.email;
-//     document.getElementById('phone').value = donnees.phone;
-//     document.getElementById('photo').value = donnees.photo;
-//   }
-// }
 

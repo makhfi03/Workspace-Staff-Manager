@@ -1,5 +1,6 @@
 let form = document.forms["ajouterWorker"];
 let employeContainer = document.getElementById("dynamiqueForm");
+let afficherProfil = document.getElementById("affichProfil");
 
 document.getElementById("ajouteExperience").addEventListener("click", () => {
   employeContainer.innerHTML += `
@@ -25,23 +26,41 @@ form.addEventListener("submit", (e) => {
     photo: form.photo.value,
     dynamiqueForm: []
   };
-  renderCard(objet);
-  console.log(objet);
 
-  for (let i = 0; i < form.name.length; i++)
+if(form.name.length){
+  for (let i = 0; i < form.name.length; i++){
+    console.log(i);
+    
     objet.dynamiqueForm.push(
       {
         name: form.name[i].value,
         roleEntreprise: form.roleEntreprise[i].value
       }
+    )}}
+    else{
+      objet.dynamiqueForm.push(
+      {
+        name: form.name.value,
+        roleEntreprise: form.roleEntreprise.value
+      }
     );
+    }
+renderCard(objet);
+form.reset();
 });
+
+
 
 function renderCard(objet) {
   let cardlist = document.getElementById("card-sidebar");
   let card = document.createElement('div');
   card.innerHTML += createCard(objet);
   cardlist.appendChild(card);
+  document.querySelectorAll(`[btnRole="showProfile"]`).forEach(btn=>{
+    btn.addEventListener("click",e=>{
+      showProfil(objet);
+    })
+  })
 }
 
 function createCard(objet) {
@@ -61,15 +80,41 @@ function createCard(objet) {
                       <span>${objet.role}</span>
                     </div>
                   </div>
+                  <div class="w-100" id="profile">
+                  <button btnRole="showProfile" type="button" class="btn btn-primary" 
+                  data-bs-toggle="modal" data-bs-target="#exampleModalProfil">Voir profil</button>
+                  </div>
                   <div class="w-100" id="edit">
-                    <button email="" class="btn btn-primary w-100 m-2 edit" type="button" 
-                    data-toggle="modal" data-target="#exampleModalCenter">Modifier</button>
+                    <button email="" class="btn btn-primary w-100 m-2" type="button" 
+                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Modifier</button>
                   </div>
                 </div>
                  </div>
-`;
-  return cards;
+`
+return cards
 }
+
+function showProfil(objet){    
+  console.log(objet);
+  
+  document.getElementById("profile").addEventListener("click", () =>{
+  afficherProfil.innerHTML = `
+  <img src=${objet.photo} id="profil-photo" class="img-thumbnail w-50 d-block mx-auto mb-3">
+  <p><strong>Nom :</strong> <span id="profil-nom">${objet.nom}</span></p>
+  <p><strong>Rôle :</strong> <span id="profil-role">${objet.role}</span></p>
+  <p><strong>Email :</strong> <span id="profil-email">${objet.email}</span></p>
+  <p><strong>Téléphone :</strong> <span id="profil-phone">${objet.phone}</span></p>
+  
+  <h5>Expériences :</h5>
+  <ul id="profil-experience">${objet.dynamiqueForm.map(e=>`<li>
+      <h4>Name : <span>${e.name}</span></h4>
+      <h4>Role : <span>${e.roleEntreprise}</span></h4>
+      </li>`).join("")}</ul>
+  `
+});
+}
+
+// localStorage.setItem("myData", )
 
 // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 // const phoneRegex = /^(\+212|00212|0)[5-7]\d{8}$/

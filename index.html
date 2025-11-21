@@ -37,7 +37,7 @@
           <div class="test">
             <h3 class="h6 text-center">Staff Members (Unassigned)</h3>
             <div class="card border border-success" id="card-sidebar">
-              <div class="card-body row d-flex justify-content-center" id="card-list">
+              <!-- <div class="card-body row d-flex justify-content-center" id="card-list">
                 <div class="col-12 col-md-12 d-flex justify-content-center" id="img">
                   <img src="" class="img-thumbnail background-sizi" alt="...">
                 </div>
@@ -55,7 +55,7 @@
                     data-toggle="modal" data-target="#exampleModalCenter">Modifier</button>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -147,15 +147,13 @@
     </div>
   </div>
 
-<!-- Modal -->
+<!-- Modifier Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">Modifier Informations</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form name="ajouterWorker" class="form">
@@ -199,41 +197,43 @@
               <button type="button" id="ajouteExperience" class="btn btn-info w-100">Ajouter Expérience</button>
             </div>
             <div class="form-group mt-4">
-              <button type="submit" class="ajouterExperience btn btn-success w-100" id="addBtn">Ajouter</button>
+              <button type="submit" class="ajouterExperience btn btn-success w-100" id="addBtn">Modifier</button>
             </div>
           </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- modal profile -->
+ <div class="modal fade" id="exampleModalProfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modifier Informations</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="affichProfil">
+  <!-- <img id="profil-photo" class="img-thumbnail w-50 d-block mx-auto mb-3">
+  <p><strong>Nom :</strong> <span id="profil-nom"></span></p>
+  <p><strong>Rôle :</strong> <span id="profil-role"></span></p>
+  <p><strong>Email :</strong> <span id="profil-email"></span></p>
+  <p><strong>Téléphone :</strong> <span id="profil-phone"></span></p>
+  
+  <h5>Expériences :</h5>
+  <ul id="profil-experience"></ul> -->
+        </div>
+      <div class="modal-footer" id="">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
   <script src="main.js"></script>
-</body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

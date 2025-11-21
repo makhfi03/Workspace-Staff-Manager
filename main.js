@@ -1,3 +1,9 @@
+let data = JSON.parse(localStorage.getItem("myData")) || [];
+
+data.forEach(d=>{
+  renderCard(d)
+})
+
 let form = document.forms["ajouterWorker"];
 let employeContainer = document.getElementById("dynamiqueForm");
 let afficherProfil = document.getElementById("affichProfil");
@@ -46,10 +52,10 @@ if(form.name.length){
     );
     }
 renderCard(objet);
+data.push(objet)
+localStorage.setItem("myData", JSON.stringify(data));
 form.reset();
 });
-
-
 
 function renderCard(objet) {
   let cardlist = document.getElementById("card-sidebar");
@@ -113,8 +119,6 @@ function showProfil(objet){
   `
 });
 }
-
-// localStorage.setItem("myData", )
 
 // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 // const phoneRegex = /^(\+212|00212|0)[5-7]\d{8}$/

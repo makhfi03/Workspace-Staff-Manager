@@ -118,13 +118,38 @@ return cards
 }
 
 document.querySelectorAll(`[data-bs-target="#showEmployes"]`).forEach(btn=>{
-  btn.addEventListener("click",e=>{    
+  btn.addEventListener("click",e=>{  
+    let id = e.target.parentElement.id  
     let html = "" ;
     html +=  data.map(e=>`${createRoomCard(e)}`).join("");
     document.querySelector("#showEmployesBody").innerHTML = html
-})
 
-})
+    let assigner = document.querySelectorAll(".assigner");
+    assigner.forEach(elt => {
+      
+elt.addEventListener("click", event=>{
+     let email = event.target.parentElement.id
+     let indix = data.findIndex(idx=> email == idx.email)
+     const zones = document.querySelectorAll('.zones')
+     zones.forEach(zone=>{
+      if(zone.id == id){
+      let cardRome = `
+    <article id=${data[indix].email} class="d-flex bg-white overflow-auto align-items-center gap-3">
+      <img width="48" height="48" src=${data[indix].photo} alt=${data[indix].nom} class="">
+      <div class="flex-grow-1">
+        <h4>${data[indix].nom}</h4>
+        <p>${data[indix].role}</p>
+      </div>
+      <button id="assigner">delete</button>
+    </article>
+  `
+  zone.insertAdjacentHTML("beforeend",cardRome)
+  }
+  });
+  });
+});
+});
+});
 
 function createRoomCard(staff){
   return `
@@ -134,17 +159,30 @@ function createRoomCard(staff){
         <h4>${staff.nom}</h4>
         <p>${staff.role}</p>
       </div>
-      <button id="assigner">Assigner</button>
+      <button class="assigner">Assigner</button>
     </article>
   `
 }
 
-let assigner = document.getElementById("assigner");
-assigner.addEventListener("click", e=>{
-     let email = e.target.parentElement.id
-     obje
+// let assigner = document.getElementById("assigner");
+// assigner.addEventListener("click", e=>{
+//      let email = e.target.parentElement.id
+//      let indix = data.findIndex(idx=> email == idx.email)
+//      const zones = document.querySelectorAll('.zones')
+//      zones.forEach(zone=>{
+//       zone.innerHTML = `
+//     <article id=${data[indix].email} class="d-flex align-items-center gap-3">
+//       <img width="48" height="48" src=${data[indix].photo} alt=${data[indix].nom} class="">
+//       <div class="flex-grow-1">
+//         <h4>${data[indix].nom}</h4>
+//         <p>${data[indix].role}</p>
+//       </div>
+//       <button id="assigner">Assigner</button>
+//     </article>
+//   `
+//      })
 
-})
+// })
 
 
 // let zones = document.querySelectorAll(".zones")

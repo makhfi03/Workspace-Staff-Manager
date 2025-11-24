@@ -62,6 +62,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 #card-list{
     overflow-y: scroll;
     scrollbar-width: none;

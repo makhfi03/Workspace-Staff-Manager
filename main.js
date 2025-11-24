@@ -66,7 +66,22 @@ function renderCard(objet) {
   cardlist.appendChild(card);
   document.querySelectorAll(`[btnRole="showProfile"]`).forEach(btn=>{
     btn.addEventListener("click",e=>{
-      showProfil(objet);
+       const employeeId = e.target.closest("[email]").getAttribute("email");
+       console.log(employeeId)
+  const objet = data.find(e=>e.email === employeeId);
+  afficherProfil.innerHTML = `
+  <img src=${objet.photo} id="profil-photo" class="img-thumbnail w-50 d-block mx-auto mb-3">
+  <p><strong>Nom :</strong> <span id="profil-nom">${objet.nom}</span></p>
+  <p><strong>Rôle :</strong> <span id="profil-role">${objet.role}</span></p>
+  <p><strong>Email :</strong> <span id="profil-email">${objet.email}</span></p>
+  <p><strong>Téléphone :</strong> <span id="profil-phone">${objet.phone}</span></p>
+  
+  <h5>Expériences :</h5>
+  <ul id="profil-experience">${objet.dynamiqueForm.map(e=>`<li>
+      <h4>Name : <span>${e.name}</span></h4>
+      <h4>Role : <span>${e.roleEntreprise}</span></h4>
+      </li>`).join("")}</ul>
+  `
     })
   })
 }
@@ -74,7 +89,7 @@ function renderCard(objet) {
 function createCard(objet) {
   let cards = "";
   cards += `
-<div class="card-body row d-flex justify-content-center" id="card-list">
+              <div class="card-body row d-flex justify-content-center" id="card-list" email="${objet.email}">
                 <div class="col-12 col-md-12 d-flex justify-content-center w-25" id="img">
                   <img src="${objet.photo}" class="img-thumbnail background-sizi" alt="...">
                 </div>
@@ -89,7 +104,7 @@ function createCard(objet) {
                     </div>
                   </div>
                   <div class="w-100" id="profile">
-                  <button btnRole="showProfile" type="button" class="btn btn-primary" 
+                  <button  btnRole="showProfile" type="button" class="btn btn-primary" 
                   data-bs-toggle="modal" data-bs-target="#exampleModalProfil">Voir profil</button>
                   </div>
                   <div class="w-100" id="edit">
@@ -102,23 +117,35 @@ function createCard(objet) {
 return cards
 }
 
-function showProfil(objet){
-  document.getElementById("profile").addEventListener("click", () =>{
-  afficherProfil.innerHTML = `
-  <img src=${objet.photo} id="profil-photo" class="img-thumbnail w-50 d-block mx-auto mb-3">
-  <p><strong>Nom :</strong> <span id="profil-nom">${objet.nom}</span></p>
-  <p><strong>Rôle :</strong> <span id="profil-role">${objet.role}</span></p>
-  <p><strong>Email :</strong> <span id="profil-email">${objet.email}</span></p>
-  <p><strong>Téléphone :</strong> <span id="profil-phone">${objet.phone}</span></p>
-  
-  <h5>Expériences :</h5>
-  <ul id="profil-experience">${objet.dynamiqueForm.map(e=>`<li>
-      <h4>Name : <span>${e.name}</span></h4>
-      <h4>Role : <span>${e.roleEntreprise}</span></h4>
-      </li>`).join("")}</ul>
+document.querySelectorAll(`[data-bs-target="#showEmployes"]`).forEach(btn=>{
+  btn.addEventListener("click",e=>{    
+    let html = "" ;
+    html +=  data.map(e=>`${createRoomCard(e)}`).join("");
+    document.querySelector("#showEmployesBody").innerHTML = html
+})
+
+})
+
+function createRoomCard(staff){
+  return `
+    <article id=${staff.email} class="d-flex align-items-center gap-3">
+      <img width="48" height="48" src=${staff.photo} alt=${staff.nom} class="">
+      <div class="flex-grow-1">
+        <h4>${staff.nom}</h4>
+        <p>${staff.role}</p>
+      </div>
+      <button id="assigner">Assigner</button>
+    </article>
   `
-});
 }
+
+let assigner = document.getElementById("assigner");
+assigner.addEventListener("click", e=>{
+     let email = e.target.parentElement.id
+     obje
+
+})
+
 
 // let zones = document.querySelectorAll(".zones")
 // zones.forEach(zone => {
@@ -126,8 +153,6 @@ function showProfil(objet){
 //   zone.addEventListener("click", (event) =>{
 //     // console.log(event.target.getAttribute("id"));
 //     zoneTargeted = event.target.getAttribute("id");
-
-    
 //   })
   
 // })
@@ -136,11 +161,22 @@ function showProfil(objet){
 
 // document.querySelectorAll.forEach(btn =>{
 //   let email = btn.getAttribute("data-unique")
-//   let obje
+//   let obj = findByEmail(email)
+//   saveToZone(zoneTargeted,obj);
 // })
 
+// saveToZone(zone,employe)
 
 
+
+// function findByEmail(email){
+// DataList.forEach((empl,i) => {
+//   if(empl.email == email)
+//     DataList.splice(i,1)
+//   return empl;
+// })
+
+// }
 
 
 

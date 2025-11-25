@@ -29,6 +29,7 @@ body{
     background-image: url('3.png');
     background-repeat: no-repeat;
     background-size: cover;
+box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.495) inset;
 }
 
 .div3 {
@@ -36,7 +37,8 @@ body{
     grid-row: 1;
     background-image: url('4.png');
     background-repeat: no-repeat;
-    background-size: cover;
+     background-size: cover;
+    box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.495) inset;
 }
 
 .div4 {
@@ -44,7 +46,8 @@ body{
     grid-row: span 3;
     background-image: url('5.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; 
+    box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.495) inset;
 }
 
 .div5 {
@@ -60,8 +63,9 @@ body{
     grid-row: 3;
     background-image: url('1.png');
     background-repeat: no-repeat;
-    background-size: cover;
-}
+ background-size: cover;
+    box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.495) inset;
+ }
 
 #card-list{
     overflow-y: scroll;
@@ -72,12 +76,6 @@ body{
     padding: 10px;
 
 }
-
-/* .card-body{
-
-    margin-bottom: 10px;
-    border: solid black 1px;
-} */
 
 @media (max-width:768px) {
     body{

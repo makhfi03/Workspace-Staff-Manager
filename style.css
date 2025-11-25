@@ -3,7 +3,8 @@
     padding: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     display: flex;
     justify-content: center;
 }
@@ -29,7 +30,7 @@ body{
     background-image: url('3.png');
     background-repeat: no-repeat;
     background-size: cover;
-box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.495) inset;
+    box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.427) inset;
 }
 
 .div3 {
@@ -37,8 +38,8 @@ box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.495) inset;
     grid-row: 1;
     background-image: url('4.png');
     background-repeat: no-repeat;
-     background-size: cover;
-    box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.495) inset;
+    background-size: cover;
+    box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.427) inset;
 }
 
 .div4 {
@@ -46,8 +47,8 @@ box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.495) inset;
     grid-row: span 3;
     background-image: url('5.png');
     background-repeat: no-repeat;
-    background-size: cover; 
-    box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.495) inset;
+    background-size: cover;
+    box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.427) inset;
 }
 
 .div5 {
@@ -63,32 +64,34 @@ box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.495) inset;
     grid-row: 3;
     background-image: url('1.png');
     background-repeat: no-repeat;
- background-size: cover;
-    box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.495) inset;
- }
+    background-size: cover;
+    box-shadow: 0 0 0 2000px rgba(255, 0, 0, 0.427) inset;
+}
 
-#card-list{
+#card-list {
     overflow-y: scroll;
     scrollbar-width: none;
     border-radius: 30px;
 }
-.sidebar{
-    padding: 10px;
 
+.sidebar {
+    padding: 10px;
 }
 
 @media (max-width:768px) {
-    body{
+    body {
         display: flex;
         flex-direction: column;
         gap: 10px;
     }
-    .main{
+
+    .main {
         display: flex;
         flex-direction: column;
 
-    } 
-    .main div{
+    }
+
+    .main div {
         width: 100%;
         height: 150px;
     }

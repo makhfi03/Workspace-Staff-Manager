@@ -8,6 +8,12 @@ data.forEach(d=>{
 let form = document.forms["ajouterWorker"];
 let employeContainer = document.getElementById("dynamiqueForm");
 let afficherProfil = document.getElementById("affichProfil");
+let zone1=[]
+let zone2=[]
+let zone3=[]
+let zone4=[]
+let zone5=[]
+let zone6=[]
 
 document.getElementById("ajouteExperience").addEventListener("click", () => {
   employeContainer.innerHTML += `
@@ -36,8 +42,6 @@ form.addEventListener("submit", (e) => {
 
 if(form.name.length){
   for (let i = 0; i < form.name.length; i++){
-    console.log(i);
-    
     objet.dynamiqueForm.push(
       {
         name: form.name[i].value,
@@ -75,7 +79,6 @@ function renderCard(objet) {
   <p><strong>Rôle :</strong> <span id="profil-role">${objet.role}</span></p>
   <p><strong>Email :</strong> <span id="profil-email">${objet.email}</span></p>
   <p><strong>Téléphone :</strong> <span id="profil-phone">${objet.phone}</span></p>
-  
   <h5>Expériences :</h5>
   <ul id="profil-experience">${objet.dynamiqueForm.map(e=>`<li>
       <h4>Name : <span>${e.name}</span></h4>
@@ -123,32 +126,36 @@ document.querySelectorAll(`[data-bs-target="#showEmployes"]`).forEach(btn=>{
     let html = "" ;
     html +=  data.map(e=>`${createRoomCard(e)}`).join("");
     document.querySelector("#showEmployesBody").innerHTML = html
-
     let assigner = document.querySelectorAll(".assigner");
     assigner.forEach(elt => {
       
-elt.addEventListener("click", event=>{
+  elt.addEventListener("click", event=>{
      let email = event.target.parentElement.id
-     let indix = data.findIndex(idx=> email == idx.email)
+     let index = data.findIndex(idx=> email == idx.email)
      const zones = document.querySelectorAll('.zones')
      zones.forEach(zone=>{
       if(zone.id == id){
       let cardRome = `
-    <article id=${data[indix].email} class="d-flex bg-white overflow-auto align-items-center gap-3">
-      <img width="48" height="48" src=${data[indix].photo} alt=${data[indix].nom} class="">
+    <article id=${data[index].email} class="d-flex bg-white overflow-auto gap-3">
+      <img width="48" height="48" src=${data[index].photo} alt=${data[index].nom} class="">
       <div class="flex-grow-1">
-        <h4>${data[indix].nom}</h4>
-        <p>${data[indix].role}</p>
+        <h4>${data[index].nom}</h4>
+        <p>${data[index].role}</p>
       </div>
-      <button id="assigner">delete</button>
+      <button id="assigner" onclick="deleteCardZone(${index},${zone.id})">delete</button>
     </article>
   `
-  zone.insertAdjacentHTML("beforeend",cardRome)
+  if(zone.id === "zone1"){
+    zone1.push(data[index])
+    data.splice(index,1)
+    renderCardSideBar();
+    renderCardZone();
   }
-  });
-  });
-});
-});
+ }
+  })
+  })
+})
+})
 });
 
 function createRoomCard(staff){
@@ -159,9 +166,68 @@ function createRoomCard(staff){
         <h4>${staff.nom}</h4>
         <p>${staff.role}</p>
       </div>
-      <button class="assigner">Assigner</button>
+      <button data-bs-dismiss="modal" class="assigner">Assigner</button>
     </article>
   `
+}
+
+function renderCardSideBar() {
+ let card = document.getElementById("card-sidebar")
+ card.innerHTML=""
+ data.forEach(o => {
+  card.innerHTML +=  `
+              <div class="card-body row d-flex justify-content-center" id="card-list" email="${o.email}">
+                <div class="col-12 col-md-12 d-flex justify-content-center w-25" id="img">
+                  <img src="${o.photo}" class="img-thumbnail background-sizi" alt="...">
+                </div>
+                <div class="col-12 col-md-12">
+                  <div class="d-flex justify-content-between m-4">
+                    <div id="">
+                      <span>${o.nom}
+                      </span>
+                    </div>
+                    <div id="role">
+                      <span>${o.role}</span>
+                    </div>
+                  </div>
+                  <div class="w-100" id="profile">
+                  <button  btnRole="showProfile" type="button" class="btn btn-primary" 
+                  data-bs-toggle="modal" data-bs-target="#exampleModalProfil">Voir profil</button>
+                  </div>
+                  <div class="w-100" id="edit">
+                    <button email="" class="btn btn-primary w-100 m-2" type="button" 
+                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Modifier</button>
+                  </div>
+                </div>
+                 </div>
+`
+ }) 
+}
+
+function renderCardZone(){
+  let zonation = document.querySelector(".zone1")
+  zonation.innerHTML = ""
+  zone1.forEach((element,index) =>{
+    zonation.innerHTML +=  `
+    <article id=${element.email} class="d-flex bg-white overflow-auto gap-3">
+      <img width="48" height="48" src=${element.photo} alt=${element.nom} class="">
+      <div class="flex-grow-1">
+        <h4>${element.nom}</h4>
+        <p>${element.role}</p>
+      </div>
+      <button id="assigner" onclick="deleteCardZone(${index},${"zone1"})">delete</button>
+    </article>
+  `
+  })
+}
+
+function deleteCardZone(index, zone){
+  if(zone === zone1||zone === "zone1"){
+    data.push(zone1[index])
+    zone1.splice(index,1)
+    renderCardSideBar();
+    renderCardZone();
+  }
 }
 
 // let assigner = document.getElementById("assigner");

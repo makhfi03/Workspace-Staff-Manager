@@ -140,40 +140,69 @@ document.querySelectorAll(`[data-bs-target="#showEmployes"]`).forEach(btn=>{
     </article>
   `
   if(zone.id === "zone1"){
-    zone1.push(data[index])
+    if(zone1.length < 4){
+      zone1.push(data[index])
     data.splice(index,1)
     renderCardSideBar();
     renderCardZone("z1");
+    }else{
+      alert('Zone plein')
+    }
+    
   }
   if(zone.id === "zone2"){
+    if(zone2.length < 4){
     zone2.push(data[index])
     data.splice(index,1)
     renderCardSideBar();
     renderCardZone("z2");
+    colorCheckZones()
+    }else{
+      alert('Zone plein')
+    }
   }
   if(zone.id === "zone3"){
+    if(zone3.length < 4){
     zone3.push(data[index])
     data.splice(index,1)
     renderCardSideBar();
     renderCardZone("z3");
+    colorCheckZones()
+    }else{
+      alert('Zone plein')
+    }
   }
   if(zone.id === "zone4"){
+    if(zone4.length < 4){
     zone4.push(data[index])
     data.splice(index,1)
     renderCardSideBar();
     renderCardZone("z4");
+    colorCheckZones()
+    }else{
+      alert('Zone plein')
+    }
   }
   if(zone.id === "zone5"){
+    if(zone5.length < 4){
     zone5.push(data[index])
     data.splice(index,1)
     renderCardSideBar();
     renderCardZone("z5");
+    }else{
+      alert('Zone plein')
+    }
   }
   if(zone.id === "zone6"){
+    if(zone6.length < 4){
     zone6.push(data[index])
     data.splice(index,1)
     renderCardSideBar();
     renderCardZone("z6");
+    colorCheckZones()
+    }else{
+      alert('Zone plein')
+    }
   }
  }
   })
@@ -332,18 +361,21 @@ function deleteCardZone(index, zone){
     zone2.splice(index,1)
     renderCardSideBar();
     renderCardZone("z2");
+    colorCheckZones()
   }
   if(zone === zone3||zone === "zone3"){
     data.push(zone3[index])
     zone3.splice(index,1)
     renderCardSideBar();
     renderCardZone("z3");
+    colorCheckZones()
   }
   if(zone === zone4||zone === "zone4"){
     data.push(zone4[index])
     zone4.splice(index,1)
     renderCardSideBar();
     renderCardZone("z4");
+    colorCheckZones()
   }
   if(zone === zone5||zone === "zone5"){
     data.push(zone5[index])
@@ -356,6 +388,30 @@ function deleteCardZone(index, zone){
     zone6.splice(index,1)
     renderCardSideBar();
     renderCardZone("z6");
+    colorCheckZones()
+  }
+}
+
+function colorCheckZones(){
+  if(zone2.length == 0){
+    document.querySelector(".div2").style.boxShadow="0 0 0 2000px rgba(255, 0, 0, 0.427) inset"
+  }else{
+    document.querySelector(".div2").style.boxShadow="0 0 0 2000px rgba(255, 0, 0, 0) inset"
+  }
+  if(zone3.length == 0){
+    document.querySelector(".div3").style.boxShadow="0 0 0 2000px rgba(255, 0, 0, 0.427) inset"
+  }else{
+    document.querySelector(".div3").style.boxShadow="0 0 0 2000px rgba(255, 0, 0, 0) inset"
+  }
+  if(zone4.length == 0){
+    document.querySelector(".div4").style.boxShadow="0 0 0 2000px rgba(255, 0, 0, 0.427) inset"
+  }else{
+    document.querySelector(".div4").style.boxShadow="0 0 0 2000px rgba(255, 0, 0, 0) inset"
+  }
+  if(zone6.length == 0){
+    document.querySelector(".div6").style.boxShadow="0 0 0 2000px rgba(255, 0, 0, 0.427) inset"
+  }else{
+    document.querySelector(".div6").style.boxShadow="0 0 0 2000px rgba(255, 0, 0, 0) inset"
   }
 }
 

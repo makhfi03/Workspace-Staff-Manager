@@ -1,5 +1,5 @@
 let zoneTargeted = "";
-let data = JSON.parse(localStorage.getItem("myData")) || [];
+let data=[];
 data.forEach(d=>{
   renderCard(d)})
 
@@ -13,6 +13,16 @@ let zone4=[]
 let zone5=[]
 let zone6=[]
 
+getZonesData()
+renderCardSideBar()
+colorCheckZones()
+renderCardZone("z1")
+renderCardZone("z2")
+renderCardZone("z3")
+renderCardZone("z4")
+renderCardZone("z5")
+renderCardZone("z6")
+  
 document.getElementById("ajouteExperience").addEventListener("click", () => {
   employeContainer.innerHTML += `
   <div class="form-group">
@@ -145,20 +155,27 @@ document.querySelectorAll(`[data-bs-target="#showEmployes"]`).forEach(btn=>{
     data.splice(index,1)
     renderCardSideBar();
     renderCardZone("z1");
+    zoneLocalStorage()
     }else{
       alert('Zone plein')
     }
     
   }
   if(zone.id === "zone2"){
+    if(data[index].role == "IT" || data[index].role == "Manager" || data[index].role == "Nettoyage"){
     if(zone2.length < 4){
     zone2.push(data[index])
     data.splice(index,1)
     renderCardSideBar();
     renderCardZone("z2");
     colorCheckZones()
+    zoneLocalStorage()
     }else{
       alert('Zone plein')
+    }
+    }else{
+      document.getElementById("messageAlert").style.display = "block";
+      setTimeout(alert, 2000);
     }
   }
   if(zone.id === "zone3"){
@@ -168,6 +185,7 @@ document.querySelectorAll(`[data-bs-target="#showEmployes"]`).forEach(btn=>{
     renderCardSideBar();
     renderCardZone("z3");
     colorCheckZones()
+    zoneLocalStorage()
     }else{
       alert('Zone plein')
     }
@@ -179,6 +197,7 @@ document.querySelectorAll(`[data-bs-target="#showEmployes"]`).forEach(btn=>{
     renderCardSideBar();
     renderCardZone("z4");
     colorCheckZones()
+    zoneLocalStorage()
     }else{
       alert('Zone plein')
     }
@@ -189,6 +208,7 @@ document.querySelectorAll(`[data-bs-target="#showEmployes"]`).forEach(btn=>{
     data.splice(index,1)
     renderCardSideBar();
     renderCardZone("z5");
+    zoneLocalStorage()
     }else{
       alert('Zone plein')
     }
@@ -200,6 +220,7 @@ document.querySelectorAll(`[data-bs-target="#showEmployes"]`).forEach(btn=>{
     renderCardSideBar();
     renderCardZone("z6");
     colorCheckZones()
+    zoneLocalStorage()
     }else{
       alert('Zone plein')
     }
@@ -210,6 +231,10 @@ document.querySelectorAll(`[data-bs-target="#showEmployes"]`).forEach(btn=>{
 })
 })
 });
+
+function alert(){
+  document.getElementById("messageAlert").style.display = "none"
+}
 
 function createRoomCard(staff){
   return `
@@ -355,6 +380,7 @@ function deleteCardZone(index, zone){
     zone1.splice(index,1)
     renderCardSideBar();
     renderCardZone("z1");
+    zoneLocalStorage()
   }
   if(zone === zone2||zone === "zone2"){
     data.push(zone2[index])
@@ -362,6 +388,7 @@ function deleteCardZone(index, zone){
     renderCardSideBar();
     renderCardZone("z2");
     colorCheckZones()
+    zoneLocalStorage()
   }
   if(zone === zone3||zone === "zone3"){
     data.push(zone3[index])
@@ -369,6 +396,7 @@ function deleteCardZone(index, zone){
     renderCardSideBar();
     renderCardZone("z3");
     colorCheckZones()
+    zoneLocalStorage()
   }
   if(zone === zone4||zone === "zone4"){
     data.push(zone4[index])
@@ -376,12 +404,14 @@ function deleteCardZone(index, zone){
     renderCardSideBar();
     renderCardZone("z4");
     colorCheckZones()
+    zoneLocalStorage()
   }
   if(zone === zone5||zone === "zone5"){
     data.push(zone5[index])
     zone5.splice(index,1)
     renderCardSideBar();
     renderCardZone("z5");
+    zoneLocalStorage()
   }
   if(zone === zone6||zone === "zone6"){
     data.push(zone6[index])
@@ -389,6 +419,7 @@ function deleteCardZone(index, zone){
     renderCardSideBar();
     renderCardZone("z6");
     colorCheckZones()
+    zoneLocalStorage()
   }
 }
 
@@ -413,6 +444,26 @@ function colorCheckZones(){
   }else{
     document.querySelector(".div6").style.boxShadow="0 0 0 2000px rgba(255, 0, 0, 0) inset"
   }
+}
+
+function zoneLocalStorage(){
+  localStorage.setItem("myData", JSON.stringify(data));
+  localStorage.setItem("zone1Data", JSON.stringify(zone1));
+  localStorage.setItem("zone2Data", JSON.stringify(zone2));
+  localStorage.setItem("zone3Data", JSON.stringify(zone3));
+  localStorage.setItem("zone4Data", JSON.stringify(zone4));
+  localStorage.setItem("zone5Data", JSON.stringify(zone5));
+  localStorage.setItem("zone6Data", JSON.stringify(zone6));
+}
+
+function getZonesData(){
+  data = JSON.parse(localStorage.getItem("myData")) || [];
+  zone1 = JSON.parse(localStorage.getItem("zone1Data")) || [];
+  zone2 = JSON.parse(localStorage.getItem("zone2Data")) || [];
+  zone3 = JSON.parse(localStorage.getItem("zone3Data")) || [];
+  zone4 = JSON.parse(localStorage.getItem("zone4Data")) || [];
+  zone5 = JSON.parse(localStorage.getItem("zone5Data")) || [];
+  zone6 = JSON.parse(localStorage.getItem("zone6Data")) || [];
 }
 
 // let assigner = document.getElementById("assigner");

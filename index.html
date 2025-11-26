@@ -9,7 +9,8 @@
   <title>Virtual Workspace</title>
 </head>
 
-<body class="maindiv d-flex">
+<body class="">
+  
   <div class="sidebar col-3 border border-success">
     <div class="col-12 ">
       <div class="d-flex flex-column gap-3">
@@ -23,6 +24,7 @@
       </div>
     </div>
   </div>
+  
   <div class="main col-9 border border-success" id="employes">
     <div class="div1 zones" id="zone1">
       <button class="btn btn-primary w-25 m-2" type="button" data-bs-toggle="modal"
@@ -48,6 +50,9 @@
         <h5>Réception </h5>
       <div class="zone4"></div>
     </div>
+    <div class="divAlert" id="messageAlert">
+    <div class="alert alert-danger" role="alert">Cet employe n'a pas l'accée à cette zone!</div>
+  </div>
     <div class="div5 zones" id="zone5">
       <button class="btn btn-primary w-25 m-2" type="button" data-bs-toggle="modal"
         data-bs-target="#showEmployes">+</button>
